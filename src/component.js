@@ -72,6 +72,10 @@ export default class SocialLogin extends Component {
 
         break
       case 'facebook':
+        // Add facebook hack for electron
+        if (res.authResponse === undefined || res.authResponse === null) {
+          res.authResponse = window.FB.getAuthResponse()
+        }
         userProfile = {
           id: res.id,
           name: res.name,
